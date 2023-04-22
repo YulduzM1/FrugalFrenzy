@@ -1,0 +1,71 @@
+/* Style for the PlanZ page */
+.plan-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Style for the PlanZ page heading */
+  .plan-heading {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the form */
+  .plan-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the form label */
+  .plan-label {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the form input */
+  .plan-input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the form button */
+  .plan-button {
+    background-color: orange;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Style for the goal list */
+  .goal-list {
+    margin-top: 40px;
+  }
+  
+  /* Style for the goal item */
+  .goal-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the goal title */
+  .goal-title {
+    font-size: 20px;
+  }
+  
+  /* Style for the goal deadline */
+  .goal-deadline {
+    font-size: 16px;
+    font-style: italic;
+  }
+  
