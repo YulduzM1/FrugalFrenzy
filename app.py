@@ -38,7 +38,32 @@ def login():
         return render_template('index.html', account_found=False, customer_id=customer_id)
 
 
+# Define leadz page route
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
+
+# Define leadz page route
+@app.route('/leadz')
+def leadz():
+    return render_template('leadz.html')
+
+
+# Define planz page route
+@app.route('/planz')
+def planz():
+    return render_template('planz.html')
+    
+# Define frienz page route
+@app.route('/frienz')
+def frienz():
+    return render_template('frienz.html')
+
+# Define about page route
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
