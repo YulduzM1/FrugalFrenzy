@@ -55,34 +55,35 @@ def leadz():
 def planz():
     return render_template('planz.html')
     
-    # Define frienz page route
+# Define frienz page route
 @app.route('/frienz')
 def frienz():
-    return render_template('frienz.html', friend_added=False)
+    return render_template('frienz.html')
 
 @app.route('/add-friend', methods=['POST'])
 def add_friend():
     customer_id = request.form['customer_id']
-    nickname = request.form['nickname']  # get the nickname from the form
-    account_found = False
-    with open('accounts.json', 'r') as json_file:
-        data = json.load(json_file)
-        for row in data['results']:
-            if row['customer_id'] == customer_id:
-                account_found = True
-                # add friend to customer's friend list with nickname
-                friends = row.get('friends', [])  # get the existing friends list or an empty list
-                friends.append({'customer_id': customer_id, 'nickname': nickname})  # add the new friend
-                row['friends'] = friends  # update the friends list
+    nickname = None
+    with open('accounts.json', 'r') as accounts_file:
+        accounts_data = json.load(accounts_file)
+        for account in accounts_data['results']:
+            if account['customer_id'] == customer_id:
+                nickname = account['nickname']
                 break
-
-    if account_found:
-        # save the updated account data to the file
-        with open('accounts.json', 'w') as outfile:
-            json.dump(data, outfile)
-        return render_template('frienz.html', friend_added=True)
+    if nickname is None:
+        return render_template('frienz.html', friend_added=False, message='Customer not found')
     else:
-        return render_template('frienz.html', friend_added=False)
+        friend_data = {
+            'customer_id': customer_id,
+            'nickname': nickname
+        }
+        with open('friends.json', 'r') as friends_file:
+            friends_data = json.load(friends_file)
+        friends_data['results'].append(friend_data)
+        with open('friends.json', 'w') as friends_file:
+            json.dump(friends_data, friends_file, indent=4)
+        return render_template('frienz.html', friend_added=True, message='Friend added successfully!')
+
 
 
 # Define about page route

@@ -25,7 +25,21 @@
 			<button type="submit">Add Friend</button>
 		</form>
 		{% if friend_added %}
-		<p>Friend added successfully!</p>
+		<p>{{ message }}</p>
+		<table>
+			<tr>
+				<th>Customer ID</th>
+				<th>Nickname</th>
+			</tr>
+			{% for friend_id, friend_nickname in friends.items() %}
+			<tr>
+				<td>{{ friend_id }}</td>
+				<td>{{ friend_nickname }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p>{{ message }}</p>
 		{% endif %}
 	</main>
 	<footer>

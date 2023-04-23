@@ -1,71 +1,48 @@
-/* Style for the PlanZ page */
-.plan-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+body {
+	background-color: #f1f1f1;
+	font-family: Arial, sans-serif;
   }
   
-  /* Style for the PlanZ page heading */
-  .plan-heading {
-    font-size: 32px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
+  h1 {
+	text-align: center;
+	margin-top: 20px;
   }
   
-  /* Style for the form */
-  .plan-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  form {
+	width: 60%;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
   }
   
-  /* Style for the form label */
-  .plan-label {
-    font-size: 20px;
-    margin-bottom: 10px;
+  label {
+	font-weight: bold;
   }
   
-  /* Style for the form input */
-  .plan-input {
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
+  input[type="text"],
+  input[type="number"],
+  textarea {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
   }
   
-  /* Style for the form button */
-  .plan-button {
-    background-color: orange;
-    color: white;
-    font-size: 20px;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+  input[type="submit"] {
+	background-color: #4CAF50;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
   }
   
-  /* Style for the goal list */
-  .goal-list {
-    margin-top: 40px;
-  }
-  
-  /* Style for the goal item */
-  .goal-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #eee;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* Style for the goal title */
-  .goal-title {
-    font-size: 20px;
-  }
-  
-  /* Style for the goal deadline */
-  .goal-deadline {
-    font-size: 16px;
-    font-style: italic;
+  input[type="submit"]:hover {
+	background-color: #45a049;
   }
   
