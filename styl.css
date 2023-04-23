@@ -1,0 +1,67 @@
+/* Style the navigation links */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+    display: flex; /* add this to use flexbox */
+    justify-content: space-between; /* add this to evenly space the items */
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin-right: 50px; /* add margin-right to create spacing */
+    color: #FF914D;
+  }
+  
+  
+  nav ul li:first-child {
+    margin-right: auto; /* add this to push the item to the left */
+    
+  }
+  
+  nav ul li a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    text-decoration: underline;
+    font-size: 18px;
+    transition: font-size 0.2s ease-in-out;
+  }
+  
+  nav ul li a:hover {
+    color: #333;
+    font-size: 20px;
+  }
+  
+  
+  /* Align the main content */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Align the image to the left */
+  img {
+    float: left;
+    margin-right: 10px;
+  }
+  
+  /* Align the first paragraph to the right */
+  main p:first-of-type {
+    text-align: right;
+  }
+  
+  /* Center the page title */
+  main h1 {
+    text-align: center;
+  }
+  
+  /* Center the second heading and paragraph */
+  main h2,
+  main p:last-of-type {
+    text-align: center;
+  }
+  
