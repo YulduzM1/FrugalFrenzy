@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create a Goal</title>
+	<link rel="stylesheet" href="webgoal.css">
+</head>
+<body>
+	<h1>Create a Goal</h1>
+
+	<form>
+		<label for="goal">Goal:</label>
+		<input type="text" id="goal" name="goal"><br><br>
+
+		<label for="description">Description:</label>
+		<textarea id="description" name="description"></textarea><br><br>
+
+		<label for="friends">Add Friends:</label>
+		<input type="text" id="friends" name="friends"><br><br>
+
+		<label for="time_budget">Time Budget in weeks:</label>
+		<input type="number" id="time_budget" name="time_budget"><br><br>
+
+		<input type="submit" value="Create Goal">
+	</form>
+
+	<h1>Payment Plan Calculator</h1>
+
+	<form>
+		<label for="total_cost">Total Cost:</label>
+		<input type="number" id="total_cost" name="total_cost"><br><br>
+
+		<label for="time_budget">Time Budget:</label>
+		<input type="number" id="time_budget" name="time_budget"><br><br>
+
+		<label for="num_payments">Number of Payments:</label>
+		<input type="number" id="num_payments" name="num_payments"><br><br>
+
+		<input type="button" value="Calculate" onclick="calculatePayments()">
+	</form>
+
+	<div id="payment_plan"></div>
+
+	<h1>Card Information</h1>
+
+	<form>
+		<label for="card_number">Card Number:</label>
+		<input type="text" id="card_number" name="card_number"><br><br>
+
+		<label for="expiration_date">Expiration Date:</label>
+		<input type="text" id="expiration_date" name="expiration_date"><br><br>
+
+		<label for="cvv">CVV:</label>
+		<input type="text" id="cvv" name="cvv"><br><br>
+
+		<input type="submit" value="Submit Payment">
+	</form>
+
+	<script>
+		function calculatePayments() {
+			// Get input values
+			var totalCost = document.getElementById("total_cost").value;
+			var timeBudget = document.getElementById("time_budget").value;
+			var numPayments = document.getElementById("num_payments").value;
+
+			// Calculate payment amount
+			var paymentAmount = totalCost / numPayments;
+
+			// Create payment plan table
+			var table = "<table><tr><th>Payment #</th><th>Amount</th></tr>";
+			for (var i = 1; i <= numPayments; i++) {
+				var amount = paymentAmount.toFixed(2);
+				table += "<tr><td>" + i + "</td><td>$" + amount + "</td></tr>";
+			}
+			table += "</table>"
+
+			// Display payment plan table
+			document.getElementById("payment_plan").innerHTML = table;
+		}
+	</script>
+</body>
+</html>
