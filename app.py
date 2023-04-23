@@ -55,10 +55,31 @@ def leadz():
 def planz():
     return render_template('planz.html')
     
+    
 # Define frienz page route
+
 @app.route('/frienz')
 def frienz():
-    return render_template('frienz.html')
+    return render_template('frienz.html', friend_added=False)
+
+# Define add friend route to handle form submission
+@app.route('/add-friend', methods=['POST'])
+def add_friend():
+    customer_id = request.form['customer_id']
+    account_found = False
+    with open('accounts.json', 'r') as json_file:
+        data = json.load(json_file)
+        for row in data['results']:
+            if row['customer_id'] == customer_id:
+                account_found = True
+                break
+
+    if account_found:
+        # TODO: add friend to customer's friend list
+        return render_template('frienz.html', friend_added=True)
+    else:
+        return render_template('frienz.html', friend_added=False)
+
 
 # Define about page route
 @app.route('/about')
