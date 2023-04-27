@@ -8,42 +8,61 @@
 	<header>
 		<nav>
 			<ul style="justify-content: flex-end;">
-			  <li><a href="/home">Home</a></li>
-			  <li><a href="/leadz">LeadZ</a></li>
-			  <li><a href="/planz">PlanZ</a></li>
-			  <li><a href="/frienz">FrienZ</a></li>
-			  <li><a href="/about">About</a></li>
+				<li><a href="/home/{{ _id }}">Home</a></li>			
+			  	<li><a href="/leadz/{{ _id }}">LeadZ</a></li>
+			  	<li><a href="/planz/{{ _id }}">PlanZ</a></li>
+			  	<li><a href="/frienz/{{ _id }}">FrienZ</a></li>
+			  	<li><a href="/about">About</a></li>
+			  	<li style="float:right"><a href="/logout">Logout</a></li>
 			</ul>
 		  </nav>
 	</header>
 	<main>
 		<h1>FrienZ</h1>
-		<p>Enter the customer ID of the friend you want to add:</p>
-		<form action="/add-friend" method="post">
-			<label for="customer_id">Customer ID:</label>
-			<input type="text" id="customer_id" name="customer_id" required>
+		<p>Enter the account ID of the friend you want to add:</p>
+		<h1>This is {{ _id }}</h1>
+		<form action="/frienz/{{ _id }}" method="post">
+			<label for="friend_name">Account ID:</label>
+			<input type="text" id="friend_name" name="friend_name" required>
 			<button type="submit">Add Friend</button>
 		</form>
-		{% if friend_added %}
-		<p>{{ message }}</p>
 		<table>
 			<tr>
-				<th>Customer ID</th>
-				<th>Nickname</th>
+				<th>Friend Name</th>
 			</tr>
-			{% for friend_id, friend_nickname in friends.items() %}
-			<tr>
-				<td>{{ friend_id }}</td>
-				<td>{{ friend_nickname }}</td>
-			</tr>
-			{% endfor %}
+			{% if friends %}
+				{% for friend in friends %}
+					<tr>
+						<td>{{ friend }}</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<tr>
+					<td>No friends yet</td>
+				</tr>
+			{% endif %}
 		</table>
-		{% else %}
-		<p>{{ message }}</p>
+		
+		{% if friend_added %}
+			<p>{{ message }}</p>
 		{% endif %}
+		
 	</main>
-	<footer>
-		<p>&copy; FrugalFrenZ 2023</p>
-	</footer>
 </body>
+<footer>
+	<h2>Contact Us</h2>
+	<ul>
+	  <li><i class="fa fa-map-marker"></i>123 Main Street, Atlanta, GA USA</li>
+	  <li><i class="fa fa-phone"></i>925-555-388</li>
+	  <li><i class="fa fa-envelope"></i>contact@frugalFrenz.com</li>
+	</ul>
+	<h2>Follow Us</h2>
+	<ul>
+	  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+	  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+	  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+	  <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+	</ul>
+  <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
+</footer>
 </html>

@@ -16,7 +16,14 @@ body {
     }
     
     /* Header Styles */
-    
+    img {
+        width: 400px; /* set the width of the image */
+        height: 250px; /* maintain the aspect ratio */
+        border-radius: 10%; /* make the image round */
+        margin-right: 20px; /* add some space to the right */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* add a subtle box-shadow */
+      }
+      
     header {
     display: flex;
     justify-content: space-between;
@@ -29,7 +36,14 @@ body {
     .logo img {
     height: 50px;
     }
-    
+    .mission {
+        margin-top: 30px;
+      }
+    .abUS {
+        margin-top: 50px;
+      
+      }
+      
     nav ul {
     list-style: none;
     margin: 0;
@@ -94,3 +108,49 @@ body {
     border-radius: 5px;
     cursor: pointer;
     }
+    footer {
+        background-color: orange;
+        text-align: center;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      
+      footer h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        color: #fff;
+      }
+      
+      footer ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
+      
+      footer ul li {
+        margin: 0 10px;
+      }
+      
+      footer ul li:first-child {
+        margin-left: 0;
+      }
+      
+      footer ul li:last-child {
+        margin-right: 0;
+      }
+      
+      footer ul li i {
+        margin-right: 5px;
+      }
+      
+      footer p {
+        margin: 20px 0 0;
+        font-size: 0.8rem;
+      }
+      
+
+    

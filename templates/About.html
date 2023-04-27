@@ -10,31 +10,48 @@
 <body>
     <header>
 		<nav>
-			<ul style="justify-content: flex-end;">
-			  <li><a href="/home">Home</a></li>
-			  <li><a href="/leadz">LeadZ</a></li>
-			  <li><a href="/planz">PlanZ</a></li>
-			  <li><a href="/frienz">FrienZ</a></li>
-			  <li><a href="/about">About</a></li>
+      <ul style="justify-content: flex-end;">
+				<li><a href="/home/{{ _id }}">Home</a></li>			
+			  	<li><a href="/leadz/{{ _id }}">LeadZ</a></li>
+			  	<li><a href="/planz/{{ _id }}">PlanZ</a></li>
+			  	<li><a href="/frienz/{{ _id }}">FrienZ</a></li>
+			  	<li><a href="/about">About</a></li>
+			  	<li style="float:right"><a href="/logout">Logout</a></li>
 			</ul>
 		  </nav>
 	</header>
     <main>
         <br></br>
-		<h1>About Us</h1>
-        <img src="image.jpg" alt="Description of the image"  align="left">
+        <img src="/static/IMG_2209.JPG" alt="Description of the image"  align="left">
+		<div class="abUS">
+        <h1>About Us</h1>
 		<p align="right"><p> We are GenZ and we know that saving money can be tough, 
             but we also know that everything is better with friends. That's why we created Frugal FrenZ
              - a website for friends to save together.</p></p>
+        </div>
             <br></br>
-          <h2>Our Mission</h2>  
-          <p align="center">FrugalFrenZ is a website that offers a unique approach to achieving your financial goals.
-             With our customized payment plan feature, you can choose the frequency and goal that works best for you.
-              But that's not all - FrugalFrenZ also connects you with communities, friends, and family to fund a 
-              common goal or save together. You can track your progress and see a public leaderboard of others who have 
-              achieved their goals using FrugalFrenZ. Plus, you can budget and aspire to your goals all in one place,
-               while seeing the contributions and progress of your team.</p>
-		
+            <div class="mission">
+                <h2>Our Mission</h2>  
+                <p align="left">FrugalFrenZ is a website that offers a unique approach to achieving your financial goals. With our customized payment plan feature, you can choose the frequency and goal that works best for you. But that's not all - FrugalFrenZ also connects you with communities, friends, and family to fund a common goal or save together. You can track your progress and see a public leaderboard of others who have achieved their goals using FrugalFrenZ. Plus, you can budget and aspire to your goals all in one place, while seeing the contributions and progress of your team.</p>
+            </div>
 	</main>
+
 </body>
+<footer>
+        <h2>Contact Us</h2>
+        <ul>
+          <li><i class="fa fa-map-marker"></i>123 Main Street, Atlanta, GA USA</li>
+          <li><i class="fa fa-phone"></i>925-555-388</li>
+          <li><i class="fa fa-envelope"></i>contact@frugalFrenz.com</li>
+        </ul>
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+      <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
+  </footer>
+  
 </html>

@@ -20,7 +20,20 @@ body {
   label {
 	font-weight: bold;
   }
-  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    }
+    
+    nav li {
+    margin-left: 20px;
+    }
+    
+    nav a {
+    font-size: 18px;
+    }
   input[type="text"],
   input[type="number"],
   textarea {
@@ -44,5 +57,50 @@ body {
   
   input[type="submit"]:hover {
 	background-color: #45a049;
+  }
+  
+
+  footer {
+    background-color: orange;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  
+  footer ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  footer ul li {
+    margin: 0 10px;
+  }
+  
+  footer ul li:first-child {
+    margin-left: 0;
+  }
+  
+  footer ul li:last-child {
+    margin-right: 0;
+  }
+  
+  footer ul li i {
+    margin-right: 5px;
+  }
+  
+  footer p {
+    margin: 20px 0 0;
+    font-size: 0.8rem;
   }
   

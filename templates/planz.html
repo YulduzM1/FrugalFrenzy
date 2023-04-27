@@ -8,11 +8,12 @@
 	<header>
 		<nav>
 			<ul style="justify-content: flex-end;">
-			  <li><a href="/home">Home</a></li>
-			  <li><a href="/leadz">LeadZ</a></li>
-			  <li><a href="/planz">PlanZ</a></li>
-			  <li><a href="/frienz">FrienZ</a></li>
-			  <li><a href="/about">About</a></li>
+				<li><a href="/home/{{ _id }}">Home</a></li>			
+			  	<li><a href="/leadz/{{ _id }}">LeadZ</a></li>
+			  	<li><a href="/planz/{{ _id }}">PlanZ</a></li>
+			  	<li><a href="/frienz/{{ _id }}">FrienZ</a></li>
+			  	<li><a href="/about">About</a></li>
+			  	<li style="float:right"><a href="/logout">Logout</a></li>
 			</ul>
 		  </nav>
 	</header>
@@ -160,4 +161,22 @@
             .catch(error => console.error(error));
     </script>
 </body>
+<footer>
+	<h2>Contact Us</h2>
+	<ul>
+	  <li><i class="fa fa-map-marker"></i>123 Main Street, Atlanta, GA USA</li>
+	  <li><i class="fa fa-phone"></i>925-555-388</li>
+	  <li><i class="fa fa-envelope"></i>contact@frugalFrenz.com</li>
+	</ul>
+	<h2>Follow Us</h2>
+	<ul>
+	  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+	  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+	  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+	  <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+	</ul>
+  <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
+</footer>
+
+</html>
 </html>

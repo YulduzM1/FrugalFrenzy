@@ -8,26 +8,42 @@
 	<header>
 		<nav>
 			<ul style="justify-content: flex-end;">
-			  <li><a href="/home">Home</a></li>
-			  <li><a href="/leadz">LeadZ</a></li>
-			  <li><a href="/planz">PlanZ</a></li>
-			  <li><a href="/frienz">FrienZ</a></li>
-			  <li><a href="/about">About</a></li>
+				<li><a href="/home/{{ _id }}">Home</a></li>			
+			  	<li><a href="/leadz/{{ _id }}">LeadZ</a></li>
+			  	<li><a href="/planz/{{ _id }}">PlanZ</a></li>
+			  	<li><a href="/frienz/{{ _id }}">FrienZ</a></li>
+			  	<li><a href="/about">About</a></li>
+			  	<li style="float:right"><a href="/logout">Logout</a></li>
 			</ul>
 		  </nav>
 	</header>
 	<main>
-		<h1>Welcome to Frugal Frenzy!, </h1>
+		<h1>This is {{ nickname }}</h1>
+		<p>Your account balance is ${{ "{:.2f}".format(balance) }}</p>
 		<p>Track your savings goals, connect with other frugal folks, and get inspired to save more money than ever before.</p>
 		<div class="savings-tracker">
-			<h2>My Savings Goals</h2>
-			<p>You have saved $100 of your $500 goal.</p>
+			<h2>Your Savings Goals</h2>
+			<p>Your FrienZ have saved $1000 of your $5000 goal.</p>
 			<progress value="20" max="100"></progress>
 			<button>Update Savings</button>
 		</div>
 	</main>
-	<footer>
-		<p>&copy; Frugal Frenzy 2023</p>
-	</footer>
 </body>
+<footer>
+        <h2>Contact Us</h2>
+        <ul>
+          <li><i class="fa fa-map-marker"></i>123 Main Street, Atlanta, GA USA</li>
+          <li><i class="fa fa-phone"></i>925-555-388</li>
+          <li><i class="fa fa-envelope"></i>contact@frugalFrenz.com</li>
+        </ul>
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+      <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
+  </footer>
+  
 </html>
