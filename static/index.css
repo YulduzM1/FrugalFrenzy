@@ -15,7 +15,12 @@ body {
   h1, h2, h3 {
     color: #FFA500;
   }
-  
+  img {
+    width: 300px; /* set the width of the image */
+    height: 300px; /* maintain the aspect ratio */
+    border-radius: 5%; /* make the image round */
+    margin-right: 20px; /* add some space to the right */
+  }
   /* Header Styles */
   
   header {
@@ -51,7 +56,7 @@ body {
   main {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 50px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,6 +64,7 @@ body {
   
   h1 {
     font-size: 48px;
+    text-align: center;
   }  
 
 

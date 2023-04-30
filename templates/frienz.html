@@ -17,7 +17,8 @@
 			</ul>
 		  </nav>
 	</header>
-	<main>
+	<main class="grid-container">
+		<div class="left-half">
 		<h1>FrienZ</h1>
 		<p>Enter the account ID of the friend you want to add:</p>
 		<h1>This is {{ _id }}</h1>
@@ -46,7 +47,10 @@
 		{% if friend_added %}
 			<p>{{ message }}</p>
 		{% endif %}
-		
+	</div>
+	<div class="right-half">
+		<img src="/static/frienz_r.png" alt="Description of the image"  align="left">
+	</div>	
 	</main>
 </body>
 <footer>

@@ -1,156 +1,128 @@
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    }
-    
-    a {
-    color: #FFA500;
-    text-decoration: none;
-    }
-    
-    h1, h2, h3 {
-    color: #FFA500;
-    }
-    
-    /* Header Styles */
-    img {
-        width: 400px; /* set the width of the image */
-        height: 250px; /* maintain the aspect ratio */
-        border-radius: 10%; /* make the image round */
-        margin-right: 20px; /* add some space to the right */
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* add a subtle box-shadow */
-      }
-      
-    header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 20px;
-    border-bottom: 1px solid #FFA500;
-    }
-    
-    .logo img {
-    height: 50px;
-    }
-    .mission {
-        margin-top: 30px;
-      }
-    .abUS {
-        margin-top: 50px;
-      
-      }
-      
-    nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    }
-    
-    nav li {
-    margin-left: 20px;
-    }
-    
-    nav a {
-    font-size: 18px;
-    }
-    
-    /* Main Content Styles */
-    
-    main {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 50px;
-    }
-    
-    h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    }
-    
-    p {
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    }
-    
-    .savings-tracker {
-    margin-top: 50px;
-    text-align: center;
-    }
-    
-    .savings-tracker h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    }
-    
-    .savings-tracker p {
-    font-size: 18px;
-    margin-bottom: 10px;
-    }
-    
-    progress {
-    width: 100%;
-    height: 20px;
-    margin-bottom: 10px;
-    }
-    
-    button {
-    background-color: #FFA500;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    }
-    footer {
-        background-color: orange;
-        text-align: center;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-      }
-      
-      footer h2 {
-        margin-top: 0;
-        font-size: 1.2rem;
-        color: #fff;
-      }
-      
-      footer ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        justify-content: center;
-      }
-      
-      footer ul li {
-        margin: 0 10px;
-      }
-      
-      footer ul li:first-child {
-        margin-left: 0;
-      }
-      
-      footer ul li:last-child {
-        margin-right: 0;
-      }
-      
-      footer ul li i {
-        margin-right: 5px;
-      }
-      
-      footer p {
-        margin: 20px 0 0;
-        font-size: 0.8rem;
-      }
-      
-
-    
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+a {
+  color: #FFA500;
+  text-decoration: none;
+}
+h1, h2, h3 {
+  color: #FFA500;
+}
+/* Header Styles */
+img {
+  width: 400px;
+  height: 250px;
+  border-radius: 10%;
+  margin-right: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+header {
+  background-color: #FFA500;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.logo img {
+  height: 50px;
+}
+.mission {
+  margin-top: 30px;
+}
+.abUS {
+  margin-top: 50px;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav li {
+  margin-right: 1rem;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+/* Main Content Styles */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px;
+}
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.savings-tracker {
+  margin-top: 50px;
+  text-align: center;
+}
+.savings-tracker h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.savings-tracker p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+progress {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 10px;
+}
+button {
+  background-color: #FFA500;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+footer {
+  background-color: orange;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+footer h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+footer ul li {
+  margin: 0 10px;
+}
+footer ul li:first-child {
+  margin-left: 0;
+}
+footer ul li:last-child {
+  margin-right: 0;
+}
+footer ul li i {
+  margin-right: 5px;
+}
+footer p {
+  margin: 20px 0 0;
+  font-size: 0.8rem;
+}

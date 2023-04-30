@@ -17,41 +17,74 @@
 			</ul>
 		  </nav>
 	</header>
-    <h1>Create a Goal</h1>
+    <h1>Your PlanZ</h1>
+<p>You have {{ num_friends }} friends.</p>
+{% if num_friends == 0 %}
+    <button onclick="location.href='/frienz/{{ _id }}'">Add Friends</button>
+{% else %}
+    <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>
+{% endif %}
+<h2>Your Groups</h2>
+{% if communities %}
+<table>
+  <thead>
+	<tr>
+		<th>Group Name</th>
+		<th>Amount Wanted</th>
+		<th>Amount Saved</th>
+		<th>Created At</th>
+		<th>Time(months)</th>
+		<th>Estimated Plan</th>
+		<th>First Payment Day</th>
+		<th>Delete Group</th>
+	</tr>
+  </thead>
+  <tbody>
+    {% for group in communities %}
+	<tr>
+		<td>{{ group[1] }}</td>
+		<td>{{ group[3] }}</td>
+		<td>{{ group[4] }}</td>
+		<td>{{ group[5] }}</td>
+		<td>{{ group[6] }}</td>
+		<td>${{ '{:.2f}'.format(group[3] / group[6] / num_friends) }} per month</td>
+		<td>
+			<form method="post">
+			<input type="hidden" name="group_id" value="{{ group[0] }}">
+			<input type="date" name="first_payment_date">
+			<input type="submit" name="update_payment_day" value="Update">
+			</form>
+		</td>
+		<td>
+			<form method="post">
+			<input type="hidden" name="group_id" value="{{ group[0] }}">
+			<input type="submit" name="delete_group" value="Delete Group">
+			</form>
+		</td>
+	</tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>You have not created any groups yet.</p>
+<form method="post">
+<label for="group_name">Group Name:</label>
+<input type="text" id="group_name" name="group_name" required><br><br>
+<label for="amount_wanted">Amount Wanted:</label>
+<input type="number" id="amount_wanted" name="amount_wanted" required><br><br>
+<label for="time_months">Time in Months:</label>
+<input type="number" id="time_months" name="time_months" required><br><br>
+<label for="first_payment_date">First payment:</label>
+<input type="date" id="first_payment_date" name="first_payment_date" required><br><br>
+<input type="submit" name="create_group" value="Create Group">
+</form>
+{% endif %}
+
 
 
     <form>
-        <label for="total_cost">Total Cost:</label>
-        <input type="number" id="total_cost" name="total_cost"><br><br>
-
-        <label for="friends">Add Friends:</label>
-        <input type="text" id="friends" name="friends"><br><br>
-
-        <label for="time_budget">Time Budget:</label>
-        <input type="number" id="time_budget" name="time_budget"><br><br>
-
-        <label for="num_payments">Number of Payments:</label>
-        <input type="number" id="num_payments" name="num_payments"><br><br>
-
-        <input type="button" value="Calculate" onclick="calculatePayments()">
-
-
-    <div id="payment_plan"></div>
-    <h1>Account Information</h1>
-
-    
-        <label for="account_nickname">Account Nickname:</label>
-        <input type="text" id="account_nickname" name="account_nickname"><br><br>
-    
-        <label for="account_balance">Account Balance:</label>
-        <input type="number" id="account_balance" name="account_balance"><br><br>
-    
-        <input type="submit" value="Update Account">
-    
-    
     <h1>Card Information</h1>
-
-    
         <label for="card_number">Card Number:</label>
         <input type="text" id="card_number" name="card_number"><br><br>
 
@@ -63,84 +96,8 @@
 
         <input type="submit" value="Submit Payment">
     </form>
-
-    <script>
-        function calculatePayments() {
-            // Get input values
-            var totalCost = document.getElementById("total_cost").value;
-            var timeBudget = document.getElementById("time_budget").value;
-            var numPayments = document.getElementById("num_payments").value;
-
-            // Calculate payment amount
-            var paymentAmount = totalCost / numPayments;
-
-            // Create payment plan table
-            var table = "<table><tr><th>Payment #</th><th>Amount</th></tr>";
-            for (var i = 1; i <= numPayments; i++) {
-                var amount = paymentAmount.toFixed(2);
-                table += "<tr><td>" + i + "</td><td>$" + amount + "</td></tr>";
-            }
-            table += "</table>"
-
-            // Display payment plan table
-            document.getElementById("payment_plan").innerHTML = table;
-        }
-    </script>
 </body>
 </html>
-<body>
-    
-  
-    <script>
-      $(document).ready(function() {
-        $("form").submit(function(event) {
-          // Prevent form from submitting normally
-          event.preventDefault();
-  
-          // Get form values
-          var goal = $("#goal").val();
-          var description = $("#description").val();
-          var friends = $("#friends").val();
-          var timeBudget = $("#time_budget").val();
-          var totalCost = $("#total_cost").val();
-          var numPayments = $("#num_payments").val();
-          var cardNumber = $("#card_number").val();
-          var cardExpiry = $("#card_expiry").val();
-          var cardCVV = $("#card_cvv").val();
-  
-          // Create request data
-          var requestData = {
-            "goal": goal,
-            "description": description,
-            "friends": friends,
-            "time_budget": timeBudget,
-            "total_cost": totalCost,
-            "num_payments": numPayments,
-            "card_number": cardNumber,
-            "card_expiry": cardExpiry,
-            "card_cvv": cardCVV
-          };
-  
-          // Send AJAX request to API
-          $.ajax({
-            url: "http://localhost:5000/api/goal",
-            type: "POST",
-            data: JSON.stringify(requestData),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function(response) {
-              // Handle successful response
-              console.log(response);
-            },
-            error: function(xhr, status, error) {
-              // Handle error response
-              console.log(xhr.responseText);
-            }
-          });
-        });
-      });
-    </script>
-  </body>
   <!DOCTYPE html>
 <html>
 <head>
@@ -151,15 +108,7 @@
     <h1>User Balance</h1>
 
     <p id="balance"></p>
-
-    <script>
-        fetch('http://api.nessieisreal.com/enterprise/accounts?key=3ae6e71b194eff8c8c1cb81093705a6d')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('balance').textContent = 'Balance: $' + data.balance;
-            })
-            .catch(error => console.error(error));
-    </script>
+=
 </body>
 <footer>
 	<h2>Contact Us</h2>
