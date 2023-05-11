@@ -1,11 +1,10 @@
-
 import pandas as pd
 import requests
 import secrets
 
 import json
 import mysql.connector
-from flask import Flask, render_template, request, redirect, flash, session
+from flask import Flask, render_template, request, redirect, flash, session, url_for
 
 
 app = Flask(__name__)
@@ -58,7 +57,6 @@ def login():
 
 
 # Define frienz page route
-# Define frienz page route
 @app.route('/frienz/<_id>', methods=['GET', 'POST'])
 def frienz(_id):
     friend_name = None
@@ -108,13 +106,13 @@ def planz(_id):
     num_friends = mycursor.fetchone()[0]
 
     # Retrieve groups created by the user
-    mycursor.execute("SELECT * FROM communities WHERE leader_id=%s", (_id,))
-    communities = mycursor.fetchall()
-
+    mycursor.execute("SELECT * FROM communities WHERE leader_id=%s LIMIT 1", (_id,))
+    community = mycursor.fetchone()
+    payments=[]
     # Handle form submission
     if request.method == 'POST':
-        if 'create_group' in request.form:
-            if len(communities) == 0:
+        if 'create_group' in request.form:    
+            if num_friends != 0:
                 group_name = request.form.get('group_name')
                 amount_wanted = request.form.get('amount_wanted')
                 time_months = request.form.get('time_months')
@@ -136,19 +134,48 @@ def planz(_id):
                 mycursor.execute(sql, val)
                 mydb.commit()
 
+                # Get a list of member_ids associated with the leader_id
+                sql = "SELECT friend_name FROM friends WHERE name = %s"
+                val = (_id,)
+                mycursor.execute(sql, val)
+                result = mycursor.fetchall()
+                member_ids = [row[0] for row in result]
+                # Add leader_id to the beginning of the list
+                member_ids.insert(0, _id)
+                print(member_ids)
+
+
+                # Get group_id associated with the leader_id
+                sql = "SELECT group_id FROM communities WHERE leader_id = %s"
+                val = (_id,)
+                mycursor.execute(sql, val)
+                group_id = mycursor.fetchone()[0]
+                mycursor.fetchall()
                 # Insert monthly payments into database
                 for i in range(int(time_months)):
                     payment_date = first_payment_date + timedelta(days=30*i)
-                    sql = "INSERT INTO payments (group_id, amount, member_id, payment_date) VALUES (%s, %s, %s, %s)"
-                    val = (mycursor.lastrowid, plan_amount, _id, payment_date)
-                    mycursor.execute(sql, val)
-                    mydb.commit()
+                    for member_id in member_ids:
+                        # Insert a new payment record with the member_id and friend_name
+                        sql = "INSERT INTO payments (group_id, member_id, amount, payment_date) VALUES (%s, %s, %s, %s)"
+                        val = (group_id, member_id, plan_amount, payment_date)
+                        mycursor.execute(sql, val)
+                        mydb.commit()
+
+
+                # Fetch payments for the group from the database
+                sql = "SELECT * FROM payments WHERE group_id = %s"
+                val = (group_id,)
+                mycursor.execute(sql, val)
+                payments = mycursor.fetchall()
+                print(payments)
+
+   
 
                 # Redirect to the same page to refresh the number of groups and show a success message
                 flash("Group created successfully!")
-                return redirect('/planz/{}'.format(_id))
+                return redirect(url_for('planz', _id=_id, group_id=group_id, payments=payments))
             else:
-                flash("You can only create one group.")
+                flash("Sorry, you need to have at least one friend to create a group.")
         elif 'delete_group' in request.form:
             group_id = request.form.get('group_id')
 
@@ -166,8 +193,14 @@ def planz(_id):
             # Redirect to the same page to refresh the list of groups and show a success message
             flash("Group deleted successfully!")
             return redirect('/planz/{}'.format(_id))
+        
+    if community != None:
+        # Fetch payments for the group from the database
+        sql = "SELECT * FROM payments WHERE group_id = " + str(community[0])
+        mycursor.execute(sql)
+        payments = mycursor.fetchall()
 
-    return render_template('planz.html', _id=_id, num_friends=num_friends, communities=communities)
+    return render_template('planz.html', _id=_id, num_friends=num_friends, payments=payments, group=community)
 
 # Define about page route
 @app.route('/about')
