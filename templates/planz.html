@@ -24,48 +24,60 @@
 {% else %}
     <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>
 {% endif %}
-<h2>Your Groups</h2>
-{% if communities %}
-<table>
-  <thead>
-	<tr>
-		<th>Group Name</th>
-		<th>Amount Wanted</th>
-		<th>Amount Saved</th>
-		<th>Created At</th>
-		<th>Time(months)</th>
-		<th>Estimated Plan</th>
-		<th>First Payment Day</th>
-		<th>Delete Group</th>
-	</tr>
-  </thead>
-  <tbody>
-    {% for group in communities %}
-	<tr>
-		<td>{{ group[1] }}</td>
-		<td>{{ group[3] }}</td>
-		<td>{{ group[4] }}</td>
-		<td>{{ group[5] }}</td>
-		<td>{{ group[6] }}</td>
-		<td>${{ '{:.2f}'.format(group[3] / group[6] / num_friends) }} per month</td>
-		<td>
-			<form method="post">
-			<input type="hidden" name="group_id" value="{{ group[0] }}">
-			<input type="date" name="first_payment_date">
-			<input type="submit" name="update_payment_day" value="Update">
-			</form>
-		</td>
-		<td>
-			<form method="post">
+<h3>Your Groups:</h3>
+{% if group %}
+<div class="group-container">
+		<div class="group">
+		  <div class="group-name">{{ group[1] }}</div>
+		  <div class="group-info">
+			<div class="group-amount">
+			  <span class="label">Amount Wanted:</span>
+			  <span class="value">{{ group[3] }}</span>
+			</div>
+			<div class="group-amount">
+			  <span class="label">Amount Saved:</span>
+			  <span class="value">{{ group[4] }}</span>
+			</div>
+			<div class="group-amount">
+			  <span class="label">Created At:</span>
+			  <span class="value">{{ group[5] }}</span>
+			</div>
+			<div class="group-amount">
+			  <span class="label">Time (months):</span>
+			  <span class="value">{{ group[6] }}</span>
+			</div>
+			<div class="group-amount">
+			  <span class="label">Estimated Plan:</span>
+			  <span class="value">${{ '{:.2f}'.format(group[3] / group[6] / num_friends) }} per month</span>
+			</div>
+			<div class="group-amount">
+			  <span class="label">First Payment Day:</span>
+			  <span class="value">{{ group[7] }}</span>
+			</div>
+		  </div>
+		  <form method="post" class="delete-group-form">
 			<input type="hidden" name="group_id" value="{{ group[0] }}">
 			<input type="submit" name="delete_group" value="Delete Group">
-			</form>
-		</td>
+		  </form>
+		</div>
+	<h1>Payment Information</h1>
+	<table>
+	<tr>
+		<th>Member ID</th>
+		<th>Friend Name</th>
+		<th>Amount</th>
+		<th>Payment Date</th>
 	</tr>
-    {% endfor %}
-  </tbody>
-</table>
-
+	{% for payment in payments %}
+		<tr>
+			<td>{{ payment[1] }}</td>
+			<td>{{ payment[2] }}</td>
+			<td>{{ payment[3] }}</td>
+			<td>{{ payment[4] }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>  
 {% else %}
 <p>You have not created any groups yet.</p>
 <form method="post">
@@ -80,35 +92,6 @@
 <input type="submit" name="create_group" value="Create Group">
 </form>
 {% endif %}
-
-
-
-    <form>
-    <h1>Card Information</h1>
-        <label for="card_number">Card Number:</label>
-        <input type="text" id="card_number" name="card_number"><br><br>
-
-        <label for="expiration_date">Expiration Date:</label>
-        <input type="text" id="expiration_date" name="expiration_date"><br><br>
-
-        <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv"><br><br>
-
-        <input type="submit" value="Submit Payment">
-    </form>
-</body>
-</html>
-  <!DOCTYPE html>
-<html>
-<head>
-    <title>User Balance</title>
-    <link rel="stylesheet" href="webgoal.css">
-</head>
-<body>
-    <h1>User Balance</h1>
-
-    <p id="balance"></p>
-=
 </body>
 <footer>
 	<h2>Contact Us</h2>
@@ -127,5 +110,4 @@
   <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
 </footer>
 
-</html>
 </html>
