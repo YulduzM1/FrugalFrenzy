@@ -90,6 +90,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
 footer {
   background-color: orange;
   text-align: center;
@@ -98,11 +99,13 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
 footer h2 {
-  margin-top: 0;
+  margin-top: 3;
   font-size: 1.2rem;
   color: #fff;
 }
+
 footer ul {
   margin: 0;
   padding: 0;
@@ -110,18 +113,23 @@ footer ul {
   display: flex;
   justify-content: center;
 }
+
 footer ul li {
-  margin: 0 10px;
+  margin: 0 5px;
 }
+
 footer ul li:first-child {
   margin-left: 0;
 }
+
 footer ul li:last-child {
   margin-right: 0;
 }
+
 footer ul li i {
   margin-right: 5px;
 }
+
 footer p {
   margin: 20px 0 0;
   font-size: 0.8rem;

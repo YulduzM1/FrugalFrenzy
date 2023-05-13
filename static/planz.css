@@ -48,6 +48,8 @@ table {
   border-collapse: collapse;
   margin: 20px 0;
   width: 100%;
+  height: 50px; /* set the height of the table */
+  overflow: scroll; /* add a scrollbar */
 }
 
 table td, table th {
@@ -158,6 +160,7 @@ form input[type="submit"][name="delete_group"]:hover {
 footer {
   background-color: orange;
   text-align: center;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;

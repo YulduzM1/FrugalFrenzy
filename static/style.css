@@ -1,86 +1,32 @@
-body {
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
-}
-img {
-  width: 400px; /* set the width of the image */
-  height: 250px; /* maintain the aspect ratio */
-  border-radius: 10%; /* make the image round */
-  margin-right: 20px; /* add some space to the right */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* add a subtle box-shadow */
-}
-
-a {
-  color: #FFA500;
-  text-decoration: none;
-}
-  
-
+/* Header Styles */
 
 header {
-  background-color: #FFA500;
-  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  background-color: #fff;
+  padding: 20px;
+  border-bottom: 1px solid #FFA500;
+}
+
+.logo img {
+  height: 50px;
 }
 
 nav ul {
-  list-style-type: none;
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 }
 
 nav li {
-  margin-right: 1rem;
+  margin-right: 20px;
 }
 
 nav a {
-  color: #fff;
-  text-decoration: none;
+  font-size: 18px;
 }
-
-main {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-form label {
-  margin-bottom: 0.5rem;
-}
-
-form input[type="text"], form textarea, form select {
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 3px;
-}
-
-form button[type="submit"] {
-  background-color: #FFA500;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-
 
 footer {
   background-color: orange;
@@ -90,9 +36,9 @@ footer {
   bottom: 0;
   width: 100%;
 }
-
+/* Footer Styles */
 footer h2 {
-  margin-top: 0;
+  margin-top: 3;
   font-size: 1.2rem;
   color: #fff;
 }
@@ -106,7 +52,7 @@ footer ul {
 }
 
 footer ul li {
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 footer ul li:first-child {
@@ -125,5 +71,3 @@ footer p {
   margin: 20px 0 0;
   font-size: 0.8rem;
 }
-
-

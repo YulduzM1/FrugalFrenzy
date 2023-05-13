@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create a Goal</title>
-    <link rel="stylesheet" href="/static/planz.css">
+	<title>FrugalFrenZ - FrienZ</title>
+	<link rel="stylesheet" type="text/css" href="/static/planz.css">
 </head>
 <body>
 	<header>
@@ -21,11 +21,9 @@
 <p>You have {{ num_friends }} friends.</p>
 {% if num_friends == 0 %}
     <button onclick="location.href='/frienz/{{ _id }}'">Add Friends</button>
-{% else %}
-    <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>
-{% endif %}
+	<h3>Before You Create A Group, add some FrienZs</h3>
+{% elif group %}
 <h3>Your Groups:</h3>
-{% if group %}
 <div class="group-container">
 		<div class="group">
 		  <div class="group-name">{{ group[1] }}</div>
@@ -48,7 +46,7 @@
 			</div>
 			<div class="group-amount">
 			  <span class="label">Estimated Plan:</span>
-			  <span class="value">${{ '{:.2f}'.format(group[3] / group[6] / num_friends) }} per month</span>
+			  <span class="value">${{ '{:.2f}'.format(group[3] / group[6] / (num_friends+1)) }} per month</span>
 			</div>
 			<div class="group-amount">
 			  <span class="label">First Payment Day:</span>
@@ -63,10 +61,11 @@
 	<h1>Payment Information</h1>
 	<table>
 	<tr>
-		<th>Member ID</th>
-		<th>Friend Name</th>
+		<th>Group ID</th>
+		<th>Friend ID</th>
 		<th>Amount</th>
 		<th>Payment Date</th>
+		<th>Action</th>
 	</tr>
 	{% for payment in payments %}
 		<tr>
@@ -74,11 +73,22 @@
 			<td>{{ payment[2] }}</td>
 			<td>{{ payment[3] }}</td>
 			<td>{{ payment[4] }}</td>
+			<td>
+				{% if payment[5] == '0' %}
+					Paid
+				{% else %}
+					<form method="post" style="border: 0; box-shadow: none; margin: 0px;">
+						<input type="hidden" name="payment_id" value="{{ payment[0] }}">
+						<input type="submit" name="mark_paid" value="Pay">
+					</form>
+				{% endif %}
+			</td>
 		</tr>
 	{% endfor %}
 	</table>
 </div>  
 {% else %}
+    <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>
 <p>You have not created any groups yet.</p>
 <form method="post">
 <label for="group_name">Group Name:</label>
@@ -100,14 +110,6 @@
 	  <li><i class="fa fa-phone"></i>925-555-388</li>
 	  <li><i class="fa fa-envelope"></i>contact@frugalFrenz.com</li>
 	</ul>
-	<h2>Follow Us</h2>
-	<ul>
-	  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-	  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-	  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-	  <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-	</ul>
   <p>&copy; 2023 Frugal FrenZ | All rights reserved.</p>
 </footer>
-
 </html>
