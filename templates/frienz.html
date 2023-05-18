@@ -45,8 +45,15 @@
 		</table>
 		
 		{% if friend_added %}
-			<p>{{ message }}</p>
+			<p>'{{ message }}'</p>
+		{% else %}
+			<script>
+				window.onload = function() {
+					alert('{{ message }}');
+				}		
+			</script>
 		{% endif %}
+
 	</div>
 	<div class="right-half">
 		<img src="/static/frenz_r.png" alt="Description of the image"  align="left">

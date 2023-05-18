@@ -58,14 +58,38 @@
 			<input type="submit" name="delete_group" value="Delete Group">
 		  </form>
 		</div>
-	<h1>Payment Information</h1>
+	<h1>Your Payments Due</h1>
 	<table>
 	<tr>
-		<th>Group ID</th>
-		<th>Friend ID</th>
+		<th>Payment ID</th>
 		<th>Amount</th>
 		<th>Payment Date</th>
 		<th>Action</th>
+	</tr>
+	{% for payment in payments %}
+		<tr>
+			{% if payment[2] == _id and payment[5] != '0' %}
+				<td>{{ payment[0] }}</td>
+				<td>{{ payment[3] }}</td>
+				<td>{{ payment[4] }}</td>
+				<td>
+					<form method="post" style="border: 0; box-shadow: none; margin: 0px;">
+						<input type="hidden" name="payment_id" value="{{ payment[0] }}">
+						<input type="submit" name="mark_paid" value="Pay">
+					</form>
+				</td>
+			{% endif %}
+		</tr>
+	{% endfor %}
+	</table>
+	<h1>Group Payments</h1>
+	<table>
+	<tr>
+		<th>Group ID</th>
+		<th>Member ID</th>
+		<th>Amount</th>
+		<th>Payment Date</th>
+		<th>Status</th>
 	</tr>
 	{% for payment in payments %}
 		<tr>
@@ -77,10 +101,7 @@
 				{% if payment[5] == '0' %}
 					Paid
 				{% else %}
-					<form method="post" style="border: 0; box-shadow: none; margin: 0px;">
-						<input type="hidden" name="payment_id" value="{{ payment[0] }}">
-						<input type="submit" name="mark_paid" value="Pay">
-					</form>
+					Not Paid yet
 				{% endif %}
 			</td>
 		</tr>
