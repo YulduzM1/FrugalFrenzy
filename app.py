@@ -62,14 +62,46 @@ def frienz(_id):
     friend_name = None
     if request.method == 'POST':
         friend_name = request.form.get('friend_name')
-        if friend_name is None:
-            return render_template('frienz.html', friend_added=False, message='Please enter a friend name', _id=_id)
+       
+        # Check if the user is already part of a community
+        mycursor.execute("SELECT COUNT(*) FROM communities WHERE leader_id = %s", (_id,))
+        community_count = mycursor.fetchone()[0]
+
+        if community_count > 0:
+            message = "You are already part of a community and cannot add more friends."
+            mycursor.execute("SELECT friend_name FROM friends WHERE name=%s", (_id,))
+            friends = [friend[0] for friend in mycursor.fetchall()]
+
+            return render_template('frienz.html', friend_added=False, message=message, _id=_id, friends=friends, friend_name=friend_name)
+
+        # Check if the friend is already part of a group or listed as a friend
+        mycursor.execute("SELECT COUNT(*) FROM communities WHERE leader_id = %s", (friend_name,))
+        group_count = mycursor.fetchone()[0]
+        mycursor.execute("SELECT COUNT(*) FROM friends WHERE name = %s AND friend_name = %s", (_id, friend_name))
+        friend_count = mycursor.fetchone()[0]
+
+        if group_count > 0 or friend_count > 0:
+            message = "The provided friend is already part of a group or listed as a friend."
+            mycursor.execute("SELECT friend_name FROM friends WHERE name=%s", (_id,))
+            friends = [friend[0] for friend in mycursor.fetchall()]
+
+            return render_template('frienz.html', friend_added=False, message=message, _id=_id, friends=friends, friend_name=friend_name)
+        
         val = (_id, friend_name)
         mycursor.execute("INSERT INTO friends (name, friend_name) VALUES (%s, %s)", val)
         mydb.commit()
+
+        # Add the friend_name account as a friend for the user
+        val = (friend_name, _id)
+        mycursor.execute("INSERT INTO friends (name, friend_name) VALUES (%s, %s)", val)
+        mydb.commit()
+       
+        
+
     mycursor.execute("SELECT friend_name FROM friends WHERE name=%s", (_id,))
     friends = [friend[0] for friend in mycursor.fetchall()]
-    return render_template('frienz.html', _id=_id, friends=friends, friend_name=friend_name, friend_added=True)
+
+    return render_template('frienz.html', _id=_id, friend_added=True, friends=friends, friend_name=friend_name)
 
 
 # Define home page route
@@ -143,7 +175,6 @@ def planz(_id):
                     first_payment_date = datetime.strptime(first_payment_date_str, '%Y-%m-%d')
 
 
-
                 # Calculate monthly plan amount
                 plan_amount = (int(amount_wanted) // int(time_months) // (num_friends+1))
 
@@ -162,8 +193,6 @@ def planz(_id):
                 # Add leader_id to the beginning of the list
                 member_ids.insert(0, _id)
          
-
-
                 # Get group_id associated with the leader_id
                 sql = "SELECT group_id FROM communities WHERE leader_id = %s"
                 val = (_id,)
@@ -179,10 +208,6 @@ def planz(_id):
                         val = (group_id, member_id, plan_amount, payment_date, plan_amount)
                         mycursor.execute(sql, val)
                         mydb.commit()
-
-
-
-   
 
                 # Redirect to the same page to refresh the number of groups and show a success message
                 flash("Group created successfully!")
