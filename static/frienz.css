@@ -81,26 +81,36 @@ form button[type="submit"] {
     cursor: pointer;
 }
 
+    /* Table styles */
+    table {
+      border-collapse: collapse;
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 60px;
+      table-layout: fixed; /* Ensures equal width for all columns */
+      height: 50px; /* Set a fixed height for the table */
+    }
 
-/* Table styles */
-table {
-  border-collapse: collapse;
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 600px;
-}
+    th,
+    td {
+      text-align: left;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      overflow: hidden; /* Prevent content overflow */
+      text-overflow: ellipsis; /* Truncate text if it exceeds cell width */
+      white-space: nowrap; /* Prevent line breaks within cells */
+    }
 
-th, td {
-  text-align: left;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-}
+    th {
+      background-color: #FFA500;
+      color: #000304;
+    }
 
-th {
-  background-color: #FFA500;
-  color: #000304;
-}
-
+    /* Make the table scrollable */
+    .table-container {
+      overflow: auto;
+    }
 footer {
     background-color: orange;
     text-align: center;
@@ -108,6 +118,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+    
   }
   
   footer h2 {

@@ -53,12 +53,13 @@
 			  <span class="value">{{ group[7] }}</span>
 			</div>
 		  </div>
-		  <form method="post" class="delete-group-form">
+		  <form method="post" style="border: 0; box-shadow: none;   background-color: #f3f3f3; margin: 0px;">
 			<input type="hidden" name="group_id" value="{{ group[0] }}">
 			<input type="submit" name="delete_group" value="Delete Group">
 		  </form>
 		</div>
 	<h1>Your Payments Due</h1>
+	<div class="table-container">
 	<table>
 	<tr>
 		<th>Payment ID</th>
@@ -83,6 +84,8 @@
 	{% endfor %}
 	</table>
 	<h1>Group Payments</h1>
+	</div>
+	<div class="table-container">
 	<table>
 	<tr>
 		<th>Group ID</th>
@@ -107,6 +110,7 @@
 		</tr>
 	{% endfor %}
 	</table>
+	</div>
 </div>  
 {% else %}
     <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>

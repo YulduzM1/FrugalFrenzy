@@ -152,6 +152,83 @@ from datetime import datetime, timedelta
 
 @app.route('/planz/<_id>', methods=['GET', 'POST'])
 def planz(_id):
+
+    # Check if the current user is a member of any group
+    mycursor.execute("SELECT group_id FROM payments WHERE member_id=%s", (_id,))
+    group_info = mycursor.fetchall()
+    if group_info:
+        print(group_info)
+        group_id = group_info[0][0]
+
+        # Retrieve the leader's ID
+        mycursor.execute("SELECT leader_id FROM communities WHERE group_id=%s", (group_id,))
+        leader_id = mycursor.fetchone()[0]
+
+        # Retrieve the leader's name
+        mycursor.execute("SELECT name FROM friends WHERE friend_name=%s", (leader_id,))
+        leader_name = mycursor.fetchone()[0]
+
+        # Retrieve the number of friends the leader has
+        mycursor.execute("SELECT COUNT(*) FROM friends WHERE name=%s", (leader_name,))
+        num_friends = mycursor.fetchone()[0]
+
+        # Retrieve the groups created by the leader
+        mycursor.execute("SELECT * FROM communities WHERE leader_id=%s LIMIT 1", (leader_id,))
+        community = mycursor.fetchone()
+
+        # Fetch payments for the group from the database
+        sql = "SELECT * FROM payments WHERE group_id=%s"
+        val = (group_id,)
+        mycursor.execute(sql, val)
+        payments = mycursor.fetchall()
+
+        if 'mark_paid' in request.form:
+            payment_id = request.form.get('payment_id')
+
+            # Get the group_id associated with the given payment_id
+            sql = "SELECT group_id FROM payments WHERE payment_id=%s"
+            val = (payment_id,)
+            mycursor.execute(sql, val)
+            group_id = mycursor.fetchone()[0]
+
+            # Update the paid_status in the payments table
+            sql = "UPDATE payments SET paid_status=0 WHERE payment_id=%s"
+            val = (payment_id,)
+            payments  = mycursor.fetchall()
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            # Get the total amount saved so far in the group
+            mycursor.execute("SELECT SUM(amount) FROM payments WHERE group_id=%s AND paid_status=0", (group_id,))
+            total_saved = mycursor.fetchone()[0]
+            
+            # Update the amount_saved field in the communities table
+            sql = "UPDATE communities SET amount_saved=%s WHERE group_id=%s"
+            val = (total_saved, group_id)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            return redirect(url_for('planz', _id=_id))
+        
+        elif 'delete_group' in request.form:
+            group_id = request.form.get('group_id')
+
+            # Delete the group and payments from the database
+            sql = "DELETE FROM communities WHERE group_id=%s"
+            val = (group_id,)
+            mycursor.execute(sql, val)
+
+            sql = "DELETE FROM payments WHERE group_id=%s"
+            val = (group_id,)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            # Redirect to the same page to refresh the list of groups and show a success message
+
+            return redirect('/planz/{}'.format(_id))
+
+        return render_template('planz.html', _id=_id, num_friends=num_friends, payments=payments, group=community)
+
     # Retrieve number of friends the user has
     mycursor.execute("SELECT COUNT(*) FROM friends WHERE name=%s", (_id,))
     num_friends = mycursor.fetchone()[0]
@@ -173,7 +250,6 @@ def planz(_id):
                     first_payment_date = datetime.now() + timedelta(days=5)
                 else:
                     first_payment_date = datetime.strptime(first_payment_date_str, '%Y-%m-%d')
-
 
                 # Calculate monthly plan amount
                 plan_amount = (int(amount_wanted) // int(time_months) // (num_friends+1))
@@ -214,63 +290,15 @@ def planz(_id):
                 return redirect(url_for('planz', _id=_id, group_id=group_id, payments=payments))
             else:
                 flash("Sorry, you need to have at least one friend to create a group.")
-        elif 'delete_group' in request.form:
-            group_id = request.form.get('group_id')
-
-            # Delete the group and payments from the database
-            sql = "DELETE FROM communities WHERE group_id=%s"
-            val = (group_id,)
-            mycursor.execute(sql, val)
-
-            sql = "DELETE FROM payments WHERE group_id=%s"
-            val = (group_id,)
-            mycursor.execute(sql, val)
-
-            mydb.commit()
-
-            # Redirect to the same page to refresh the list of groups and show a success message
-            flash("Group deleted successfully!")
-            return redirect('/planz/{}'.format(_id))
-        
-        elif 'mark_paid' in request.form:
-            payment_id = request.form.get('payment_id')
-
-
-            # Get the group_id associated with the given payment_id
-            sql = "SELECT group_id FROM payments WHERE payment_id=%s"
-            val = (payment_id,)
-            mycursor.execute(sql, val)
-            group_id = mycursor.fetchone()[0]
-  
-
-            # Update the paid_status in the payments table
-            sql = "UPDATE payments SET paid_status=0 WHERE payment_id=%s"
-            val = (payment_id,)
-            payments  = mycursor.fetchall()
-            mycursor.execute(sql, val)
-            mydb.commit()
-            print(payments)
-
-            # Get the total amount saved so far in the group
-            mycursor.execute("SELECT SUM(amount) FROM payments WHERE group_id=%s AND paid_status=0", (group_id,))
-            total_saved = mycursor.fetchone()[0]
-           
-            # Update the amount_saved field in the communities table
-            sql = "UPDATE communities SET amount_saved=%s WHERE group_id=%s"
-            val = (total_saved, group_id)
-            mycursor.execute(sql, val)
-            mydb.commit()
-
-
-            # Redirect to the same page to refresh the list of payments and show a success message
-            flash("Payment marked as paid!")
-            return redirect(url_for('planz', _id=_id))
-            
+       
     if community != None:
         # Fetch payments for the group from the database
         sql = "SELECT * FROM payments WHERE group_id = " + str(community[0])
         mycursor.execute(sql)
         payments = mycursor.fetchall()
+    
+
+
 
     return render_template('planz.html', _id=_id, num_friends=num_friends, payments=payments, group=community)
 
