@@ -14,16 +14,14 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
     host='localhost',
-    user='root',
-    passwd='YulduzM1',
+    user='user_211',
+    passwd='frugalFrienz.123',
     database='findb'
 )
 
-if mydb.is_connected():
-    print('Connected to MySQL server')
-    mydb.close()
-else:
-    print('Failed to connect to MySQL server')
+mycursor = mydb.cursor()
+sqlFormula = "INSERT INTO friends (name, friend_name) VALUES (%s, %s)"
+
 
 url = 'http://api.nessieisreal.com/enterprise/accounts?key=3ae6e71b194eff8c8c1cb81093705a6d'
 response = requests.get(url)
@@ -311,4 +309,4 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
