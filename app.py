@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as py 
 import requests
 import decimal
 
@@ -19,8 +19,11 @@ mydb = mysql.connector.connect(
     database='findb'
 )
 
-mycursor = mydb.cursor()
-sqlFormula = "INSERT INTO friends (name, friend_name) VALUES (%s, %s)"
+if mydb.is_connected():
+    print('Connected to MySQL server')
+    mydb.close()
+else:
+    print('Failed to connect to MySQL server')
 
 url = 'http://api.nessieisreal.com/enterprise/accounts?key=3ae6e71b194eff8c8c1cb81093705a6d'
 response = requests.get(url)
