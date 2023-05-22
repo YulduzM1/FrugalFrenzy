@@ -21,8 +21,7 @@ With Frugal FrenZ, you can participate in a leaderboard and track your progress 
 ## Features
 
 
-![Alt Text](https://i.imgur.com/GAeEJib.gif)
-
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/gnbE8qC"  ><a href="//imgur.com/a/gnbE8qC">Frienz</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 - Customized payment plans: Choose the frequency and goal that suits your financial situation.
 - Community funding: Connect with friends, family, or new acquaintances to fund a common goal and save together.
