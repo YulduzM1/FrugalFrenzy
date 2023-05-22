@@ -2,6 +2,10 @@
 
 Frugal FrenZy is a website that brings friends together to save money and achieve their financial goals. Our platform combines various approaches to saving money and fosters a sense of community, making the process fun and rewarding.
 
+For Demo please click the link below: 
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/gnbE8qC"  ><a href="//imgur.com/a/gnbE8qC">Frienz</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -21,7 +25,6 @@ With Frugal FrenZ, you can participate in a leaderboard and track your progress 
 ## Features
 
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/gnbE8qC"  ><a href="//imgur.com/a/gnbE8qC">Frienz</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 - Customized payment plans: Choose the frequency and goal that suits your financial situation.
 - Community funding: Connect with friends, family, or new acquaintances to fund a common goal and save together.
