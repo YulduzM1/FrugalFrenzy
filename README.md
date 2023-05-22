@@ -4,7 +4,7 @@ Frugal FrenZy is a website that brings friends together to save money and achiev
 
 For Demo please click the link below: 
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/gnbE8qC"  ><a href="//imgur.com/a/gnbE8qC">Frienz</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/gnbE8qC"  ><a href="//imgur.com/a/gnbE8qC">Frienz</a></blockquote>
 
 ## Table of Contents
 
