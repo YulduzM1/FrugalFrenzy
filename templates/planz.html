@@ -12,7 +12,7 @@
 			  	<li><a href="/leadz/{{ _id }}">LeadZ</a></li>
 			  	<li><a href="/planz/{{ _id }}">PlanZ</a></li>
 			  	<li><a href="/frienz/{{ _id }}">FrienZ</a></li>
-			  	<li><a href="/about">About</a></li>
+			  	<li><a href="/about/{{ _id }}">About</a></li>
 			  	<li style="float:right"><a href="/logout">Logout</a></li>
 			</ul>
 		  </nav>
@@ -58,7 +58,8 @@
 			<input type="submit" name="delete_group" value="Delete Group">
 		  </form>
 		</div>
-	<h1>Your Payments Due</h1>
+	</div>
+	<h2>Your Payments Due</h2>
 	<div class="table-container">
 	<table>
 	<tr>
@@ -74,7 +75,7 @@
 				<td>{{ payment[3] }}</td>
 				<td>{{ payment[4] }}</td>
 				<td>
-					<form method="post" style="border: 0; box-shadow: none; margin: 0px;">
+					<form method="post" style="border: 0; box-shadow: none; padding: 4px;">
 						<input type="hidden" name="payment_id" value="{{ payment[0] }}">
 						<input type="submit" name="mark_paid" value="Pay">
 					</form>
@@ -83,7 +84,7 @@
 		</tr>
 	{% endfor %}
 	</table>
-	<h1>Group Payments</h1>
+	<h2>Group Payments</h2>
 	</div>
 	<div class="table-container">
 	<table>
@@ -111,7 +112,6 @@
 	{% endfor %}
 	</table>
 	</div>
-</div>  
 {% else %}
     <button onclick="location.href='/frienz/{{ _id }}'">Edit Friends</button>
 <p>You have not created any groups yet.</p>

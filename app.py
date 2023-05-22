@@ -43,15 +43,32 @@ def login():
     _id = request.form['_id']
     account_found = False
     nickname = ''
+    balance = 0
+    
     for row in data['results']:
         if row['_id'] == _id:
             account_found = True
             nickname = row['nickname']
             balance = row['balance']
             break
+    sql = "SELECT group_id FROM communities WHERE leader_id = %s"
+    val = (_id,)
+    mycursor.execute(sql, val)
+    group = mycursor.fetchone()
+    if group is None:
+        amount_wanted = None
+        savings_goal = None
+    else:
+        mycursor.execute("SELECT amount_saved, amount_wanted FROM communities WHERE leader_id = %s", (_id,))
+        result = mycursor.fetchone()
+        savings_goal = result[0]
+        amount_wanted = result[1]
+
+
+
 
     if account_found:
-        return render_template('Home.html', _id=_id, nickname=nickname, balance=balance)
+        return render_template('Home.html', _id=_id, amount_wanted=amount_wanted, savings_goal=savings_goal, nickname=nickname, balance=balance)
     else:
         return render_template('index.html', account_found=False, _id=_id)
     
@@ -209,7 +226,7 @@ def planz(_id):
             mycursor.execute(sql, val)
             mydb.commit()
 
-            return redirect(url_for('planz', _id=_id))
+            return redirect(url_for('planz', _id=_id, group_id=group_id, payments=payments, num_friends=num_friends))
         
         elif 'delete_group' in request.form:
             group_id = request.form.get('group_id')
@@ -304,9 +321,10 @@ def planz(_id):
     return render_template('planz.html', _id=_id, num_friends=num_friends, payments=payments, group=community)
 
 # Define about page route
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/about/<_id>')
+def about(_id):
+    return render_template('about.html', _id=_id)
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(debug=True)
