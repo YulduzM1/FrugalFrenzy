@@ -20,6 +20,10 @@ With Frugal FrenZ, you can participate in a leaderboard and track your progress 
 
 ## Features
 
+
+![Alt Text](https://imgur.com/GAeEJib.gif)
+
+
 - Customized payment plans: Choose the frequency and goal that suits your financial situation.
 - Community funding: Connect with friends, family, or new acquaintances to fund a common goal and save together.
 - Progress tracking: Monitor your progress and see how much you saved.
