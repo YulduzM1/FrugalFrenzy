@@ -21,7 +21,7 @@ With Frugal FrenZ, you can participate in a leaderboard and track your progress 
 ## Features
 
 
-![Alt Text](https://imgur.com/GAeEJib.gif)
+![Alt Text](https://i.imgur.com/GAeEJib.gif)
 
 
 - Customized payment plans: Choose the frequency and goal that suits your financial situation.
